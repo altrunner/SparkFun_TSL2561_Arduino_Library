@@ -49,9 +49,9 @@ Updated to Arduino 1.6.4 5/2015
 #include <SparkFunTSL2561.h>
 #include <Wire.h>
 
-// Create an SFE_TSL2561 object, here called "light":
+// Create an TSL2561 object, here called "light":
 
-SFE_TSL2561 light;
+TSL2561 light;
 
 // Global variables:
 
@@ -65,7 +65,7 @@ void setup()
   Serial.begin(9600);
   Serial.println("TSL2561 example sketch");
 
-  // Initialize the SFE_TSL2561 library
+  // Initialize the TSL2561 library
 
   // You can pass nothing to light.begin() for the default I2C address (0x39),
   // or use one of the following presets if you have changed

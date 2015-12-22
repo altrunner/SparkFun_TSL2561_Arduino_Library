@@ -1,5 +1,5 @@
 /*
-	SFE_TSL2561 illumination sensor library for Arduino
+	TSL2561 illumination sensor library for Arduino
 	Mike Grusin, SparkFun Electronics
 	
 	This library provides functions to access the TAOS TSL2561
@@ -18,11 +18,11 @@
 
 #include "Arduino.h"
 
-class SFE_TSL2561
+class TSL2561
 {
 	public:
-		SFE_TSL2561(void);
-			// SFE_TSL2561 object
+		TSL2561(void);
+			// TSL2561 object
 			
 		boolean begin(void);
 			// Initialize TSL2561 library with default address (0x39)

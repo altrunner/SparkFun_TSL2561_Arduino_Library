@@ -1,5 +1,5 @@
 /*
-	SFE_TSL2561 illumination sensor library for Arduino
+	TSL2561 illumination sensor library for Arduino
 	Mike Grusin, SparkFun Electronics
 	
 	This library provides functions to access the TAOS TSL2561
@@ -17,12 +17,12 @@
 #include <Wire.h>
 
 
-SFE_TSL2561::SFE_TSL2561(void)
-	// SFE_TSL2561 object
+TSL2561::TSL2561(void)
+	// TSL2561 object
 {}
 
 
-boolean SFE_TSL2561::begin(void)
+boolean TSL2561::begin(void)
 	// Initialize TSL2561 library with default address (0x39)
 	// Always returns true
 {
@@ -30,7 +30,7 @@ boolean SFE_TSL2561::begin(void)
 }
 
 
-boolean SFE_TSL2561::begin(char i2c_address)
+boolean TSL2561::begin(char i2c_address)
 	// Initialize TSL2561 library to arbitrary address or:
 	// TSL2561_ADDR_0 (0x29 address with '0' shorted on board)
 	// TSL2561_ADDR   (0x39 default address)
@@ -43,7 +43,7 @@ boolean SFE_TSL2561::begin(char i2c_address)
 }
 
 
-boolean SFE_TSL2561::setPowerUp(void)
+boolean TSL2561::setPowerUp(void)
 	// Turn on TSL2561, begin integrations
 	// Returns true (1) if successful, false (0) if there was an I2C error
 	// (Also see getError() below)
@@ -53,7 +53,7 @@ boolean SFE_TSL2561::setPowerUp(void)
 }
 
 
-boolean SFE_TSL2561::setPowerDown(void)
+boolean TSL2561::setPowerDown(void)
 	// Turn off TSL2561
 	// Returns true (1) if successful, false (0) if there was an I2C error
 	// (Also see getError() below)
@@ -63,7 +63,7 @@ boolean SFE_TSL2561::setPowerDown(void)
 }
 
 
-boolean SFE_TSL2561::setTiming(boolean gain, unsigned char time)
+boolean TSL2561::setTiming(boolean gain, unsigned char time)
 	// If gain = false (0), device is set to low gain (1X)
 	// If gain = high (1), device is set to high gain (16X)
 	// If time = 0, integration will be 13.7ms
@@ -96,7 +96,7 @@ boolean SFE_TSL2561::setTiming(boolean gain, unsigned char time)
 }
 
 
-boolean SFE_TSL2561::setTiming(boolean gain, unsigned char time, unsigned int &ms)
+boolean TSL2561::setTiming(boolean gain, unsigned char time, unsigned int &ms)
 	// If gain = false (0), device is set to low gain (1X)
 	// If gain = high (1), device is set to high gain (16X)
 	// If time = 0, integration will be 13.7ms
@@ -120,7 +120,7 @@ boolean SFE_TSL2561::setTiming(boolean gain, unsigned char time, unsigned int &m
 }
 
 
-boolean SFE_TSL2561::manualStart(void)
+boolean TSL2561::manualStart(void)
 	// Starts a manual integration period
 	// After running this command, you must manually stop integration with manualStop()
 	// Internally sets integration time to 3 for manual integration (gain is unchanged)
@@ -149,7 +149,7 @@ boolean SFE_TSL2561::manualStart(void)
 }
 
 
-boolean SFE_TSL2561::manualStop(void)
+boolean TSL2561::manualStop(void)
 	// Stops a manual integration period
 	// Returns true (1) if successful, false (0) if there was an I2C error
 	// (Also see getError() below)
@@ -170,7 +170,7 @@ boolean SFE_TSL2561::manualStop(void)
 }
 
 
-boolean SFE_TSL2561::getData(unsigned int &data0, unsigned int &data1)
+boolean TSL2561::getData(unsigned int &data0, unsigned int &data1)
 	// Retrieve raw integration results
 	// data0 and data1 will be set to integration results
 	// Returns true (1) if successful, false (0) if there was an I2C error
@@ -184,7 +184,7 @@ boolean SFE_TSL2561::getData(unsigned int &data0, unsigned int &data1)
 }
 
 
-boolean SFE_TSL2561::getLux(unsigned char gain, unsigned int ms, unsigned int CH0, unsigned int CH1, double &lux)
+boolean TSL2561::getLux(unsigned char gain, unsigned int ms, unsigned int CH0, unsigned int CH1, double &lux)
 	// Convert raw data to lux
 	// gain: 0 (1X) or 1 (16X), see setTiming()
 	// ms: integration time in ms, from setTiming() or from manual integration
@@ -252,7 +252,7 @@ boolean SFE_TSL2561::getLux(unsigned char gain, unsigned int ms, unsigned int CH
 }
 
 
-boolean SFE_TSL2561::setInterruptControl(unsigned char control, unsigned char persist)
+boolean TSL2561::setInterruptControl(unsigned char control, unsigned char persist)
 	// Sets up interrupt operations
 	// If control = 0, interrupt output disabled
 	// If control = 1, use level interrupt, see setInterruptThreshold()
@@ -270,7 +270,7 @@ boolean SFE_TSL2561::setInterruptControl(unsigned char control, unsigned char pe
 }
 
 
-boolean SFE_TSL2561::setInterruptThreshold(unsigned int low, unsigned int high)
+boolean TSL2561::setInterruptThreshold(unsigned int low, unsigned int high)
 	// Set interrupt thresholds (channel 0 only)
 	// low, high: 16-bit threshold values
 	// Returns true (1) if successful, false (0) if there was an I2C error
@@ -284,7 +284,7 @@ boolean SFE_TSL2561::setInterruptThreshold(unsigned int low, unsigned int high)
 }
 
 
-boolean SFE_TSL2561::clearInterrupt(void)
+boolean TSL2561::clearInterrupt(void)
 	// Clears an active interrupt
 	// Returns true (1) if successful, false (0) if there was an I2C error
 	// (Also see getError() below)
@@ -300,7 +300,7 @@ boolean SFE_TSL2561::clearInterrupt(void)
 }
 
 
-boolean SFE_TSL2561::getID(unsigned char &ID)
+boolean TSL2561::getID(unsigned char &ID)
 	// Retrieves part and revision code from TSL2561
 	// Sets ID to part ID (see datasheet)
 	// Returns true (1) if successful, false (0) if there was an I2C error
@@ -314,7 +314,7 @@ boolean SFE_TSL2561::getID(unsigned char &ID)
 }
 
 
-byte SFE_TSL2561::getError(void)
+byte TSL2561::getError(void)
 	// If any library command fails, you can retrieve an extended
 	// error code using this command. Errors are from the wire library: 
 	// 0 = Success
@@ -328,7 +328,7 @@ byte SFE_TSL2561::getError(void)
 
 // Private functions:
 
-boolean SFE_TSL2561::readByte(unsigned char address, unsigned char &value)
+boolean TSL2561::readByte(unsigned char address, unsigned char &value)
 	// Reads a byte from a TSL2561 address
 	// Address: TSL2561 address (0 to 15)
 	// Value will be set to stored byte
@@ -354,7 +354,7 @@ boolean SFE_TSL2561::readByte(unsigned char address, unsigned char &value)
 }
 
 
-boolean SFE_TSL2561::writeByte(unsigned char address, unsigned char value)
+boolean TSL2561::writeByte(unsigned char address, unsigned char value)
 	// Write a byte to a TSL2561 address
 	// Address: TSL2561 address (0 to 15)
 	// Value: byte to write to address
@@ -374,7 +374,7 @@ boolean SFE_TSL2561::writeByte(unsigned char address, unsigned char value)
 }
 
 
-boolean SFE_TSL2561::readUInt(unsigned char address, unsigned int &value)
+boolean TSL2561::readUInt(unsigned char address, unsigned int &value)
 	// Reads an unsigned integer (16 bits) from a TSL2561 address (low byte first)
 	// Address: TSL2561 address (0 to 15), low byte first
 	// Value will be set to stored unsigned integer
@@ -405,7 +405,7 @@ boolean SFE_TSL2561::readUInt(unsigned char address, unsigned int &value)
 }
 
 
-boolean SFE_TSL2561::writeUInt(unsigned char address, unsigned int value)
+boolean TSL2561::writeUInt(unsigned char address, unsigned int value)
 	// Write an unsigned integer (16 bits) to a TSL2561 address (low byte first)
 	// Address: TSL2561 address (0 to 15), low byte first
 	// Value: unsigned int to write to address
